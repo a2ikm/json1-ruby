@@ -40,6 +40,8 @@ module Json1
         expect_false
       when "n"
         expect_null
+      when nil
+        unexpected_eof
       else
         false
       end
@@ -92,6 +94,10 @@ module Json1
       end
       advance
       true
+    end
+
+    private def unexpected_eof
+      raise "unexpected EOF"
     end
 
     private def advance
