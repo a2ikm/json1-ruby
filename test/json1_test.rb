@@ -8,6 +8,6 @@ class Json1Test < Test::Unit::TestCase
   end
 
   test ".lint" do
-    assert_equal(true, Json1.lint("source"))
+    assert_equal(true, Json1.lint("null"))
   end
 end
