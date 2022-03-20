@@ -10,7 +10,6 @@ module Json1
     def initialize(source)
       @en = source.each_char
       @char = nil
-      @eof = false
 
       advance
     end
@@ -23,7 +22,8 @@ module Json1
     private def expect_json
       consume_whitespace
       expect_value
-      consume_eof_or_whitespace
+      consume_whitespace
+      expect_eof
     end
 
     private def expect_value
@@ -72,17 +72,16 @@ module Json1
       expect("l")
     end
 
-    private def consume_eof_or_whitespace
-      if @eof
-        true
-      else
-        consume_whitespace
-      end
-    end
-
     private def consume_whitespace
       while WHITESPACES.include?(@char)
         advance
+      end
+      true
+    end
+
+    private def expect_eof
+      if !@char.nil?
+        raise "expected EOF but got '%s'" % [@char]
       end
       true
     end
@@ -99,7 +98,6 @@ module Json1
       @char = @en.next
     rescue StopIteration
       @char = nil
-      @eof = true
     end
   end
 end
