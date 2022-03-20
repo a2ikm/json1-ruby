@@ -20,9 +20,9 @@ module Json1
     end
 
     private def expect_json
-      consume_whitespace
+      skip_whitespace
       expect_value
-      consume_whitespace
+      skip_whitespace
       expect_eof
     end
 
@@ -72,7 +72,7 @@ module Json1
       expect("l")
     end
 
-    private def consume_whitespace
+    private def skip_whitespace
       while WHITESPACES.include?(@char)
         advance
       end
