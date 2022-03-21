@@ -11,5 +11,7 @@ class Json1Test < Test::Unit::TestCase
     assert_equal(true, Json1.lint("null"))
 
     assert_raise(RuntimeError) { Json1.lint("") }
+    assert_raise(RuntimeError) { Json1.lint("nul") }
+    assert_raise(RuntimeError) { Json1.lint("nulll") }
   end
 end
