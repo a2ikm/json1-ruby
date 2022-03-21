@@ -10,6 +10,6 @@ class Json1Test < Test::Unit::TestCase
   test ".lint" do
     assert_equal(true, Json1.lint("null"))
 
-    assert_raise(RuntimeError, "unexpected EOF") { Json1.lint("") }
+    assert_raise(RuntimeError) { Json1.lint("") }
   end
 end
