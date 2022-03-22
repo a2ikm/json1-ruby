@@ -56,7 +56,14 @@ module Json1
     end
 
     private def expect_string
-      raise NotImplementedError
+      expect("\"")
+      while @char != "\""
+        if eof?
+          unexpected_eof
+        end
+        advance
+      end
+      expect("\"")
     end
 
     private def expect_true
