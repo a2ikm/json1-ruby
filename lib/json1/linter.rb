@@ -82,13 +82,16 @@ module Json1
     end
 
     private def expect_eof
-      if !@char.nil?
+      unless eof?
         raise "expected EOF but got '%s'" % [@char]
       end
       true
     end
 
     private def expect(c)
+      if eof?
+        unexpected_eof
+      end
       if @char != c
         raise "expected '%s' but got '%s'" % [c, @char]
       end
@@ -98,6 +101,10 @@ module Json1
 
     private def unexpected_eof
       raise "unexpected EOF"
+    end
+
+    private def eof?
+      @char.nil?
     end
 
     private def advance
