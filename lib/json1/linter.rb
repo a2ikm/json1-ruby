@@ -9,6 +9,7 @@ module Json1
 
     def initialize(source)
       @en = source.each_char
+      @prev_char = nil
       @char = nil
 
       advance
@@ -57,7 +58,10 @@ module Json1
 
     private def expect_string
       expect("\"")
-      while @char != "\""
+      loop do
+        if @char == "\"" && @prev_char != "\\"
+          break
+        end
         if eof?
           unexpected_eof
         end
@@ -115,8 +119,11 @@ module Json1
     end
 
     private def advance
-      @char = @en.next
+      char = @en.next
+      @prev_char = @char
+      @char = char
     rescue StopIteration
+      @prev_char = @char
       @char = nil
     end
   end
