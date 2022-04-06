@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require_relative "json1/version"
+require_relative "json1/token"
+require_relative "json1/lexer"
 require_relative "json1/linter"
 require_relative "json1/parser"
 
