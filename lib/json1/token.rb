@@ -6,6 +6,8 @@ module Json1
       :true,
       :false,
       :string,
+      :lsqbracket,
+      :rsqbracket
     ].freeze
 
     attr_reader :type, :literal

@@ -27,16 +27,18 @@ module Json1
 
       case @char
       when nil
-        read_eof
+        Token.new(:eof, nil)
+      when "["
+        advance
+        Token.new(:lsqbracket, @prev_char)
+      when "]"
+        advance
+        Token.new(:rsqbracket, @prev_char)
       when "\""
         read_string
       else
         read_keyword
       end
-    end
-
-    private def read_eof
-      Token.new(:eof, nil)
     end
 
     private def read_string

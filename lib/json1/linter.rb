@@ -21,6 +21,8 @@ module Json1
       when :null, :true, :false, :string
         advance
         true
+      when :lsqbracket
+        expect_array
       else
         false
       end
@@ -31,6 +33,19 @@ module Json1
         raise "expected EOF but got #{@current.type}"
       end
       true
+    end
+
+    private def expect_array
+      expect(:lsqbracket)
+      expect(:rsqbracket)
+      true
+    end
+
+    private def expect(type)
+      unless @current.type == type
+        raise "expected #{type} but got #{@current.type}"
+      end
+      advance
     end
 
     private def unexpected_eof
