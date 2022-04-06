@@ -28,7 +28,7 @@ module Json1
 
     private def expect_eof
       unless eof?
-        raise "expected EOF but got '%s'" % [@char]
+        raise "expected EOF but got #{@current.type}"
       end
       true
     end
