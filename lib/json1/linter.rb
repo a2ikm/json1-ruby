@@ -71,11 +71,18 @@ module Json1
     end
 
     private def expect_true
-      raise NotImplementedError
+      expect("t")
+      expect("r")
+      expect("u")
+      expect("e")
     end
 
     private def expect_false
-      raise NotImplementedError
+      expect("f")
+      expect("a")
+      expect("l")
+      expect("s")
+      expect("e")
     end
 
     private def expect_null

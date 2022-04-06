@@ -9,6 +9,8 @@ class Json1Test < Test::Unit::TestCase
 
   test ".lint" do
     assert_equal(true, Json1.lint("null"))
+    assert_equal(true, Json1.lint("true"))
+    assert_equal(true, Json1.lint("false"))
 
     assert_equal(true, Json1.lint('""'))
     assert_equal(true, Json1.lint('"foo"'))
