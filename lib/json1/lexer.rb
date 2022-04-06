@@ -25,18 +25,14 @@ module Json1
     def emit
       skip_whitespace
 
-      token =
-        case @char
-        when nil
-          read_eof
-        when "\""
-          read_string
-        else
-          read_keyword
-        end
-
-      advance
-      token
+      case @char
+      when nil
+        read_eof
+      when "\""
+        read_string
+      else
+        read_keyword
+      end
     end
 
     private def read_eof
