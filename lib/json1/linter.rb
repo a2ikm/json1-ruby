@@ -18,7 +18,7 @@ module Json1
       case @current.type
       when :eof
         unexpected_eof
-      when :nil, :true, :false, :string
+      when :null, :true, :false, :string
         advance
         true
       else

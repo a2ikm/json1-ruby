@@ -85,7 +85,7 @@ module Json1
       when "false"
         Token.new(:false, literal)
       when "null"
-        Token.new(:nil, literal)
+        Token.new(:null, literal)
       else
         raise "unknown token: #{literal.inspect}"
       end
